@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solutions | Babaji Shivram Logistics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="../assets/css/nav.css" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <style>
+      /* Page-specific light styles to compose with the shared design system */
+      .solutions-hero-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; }
+      .solutions-intro { color: rgba(255,255,255,0.9); max-width: 720px; margin: 10px auto 0; }
+
+      /* Active page highlighting */
+      .nav-item .nav-link.active,
+      .nav-item.active .nav-link {
+        color: var(--accent-color) !important;
+        font-weight: var(--font-weight-semibold);
+      }
+
+      .nav-item.active {
+        position: relative;
+      }
+
+      .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 2px;
+      }
+
+      /* Enhanced Solutions Section */
+      .solutions-section {
+        background: var(--background-primary);
+        position: relative;
+      }
+
+      .solutions-header {
+        text-align: center;
+        margin-bottom: var(--space-16);
+      }
+
+      .solutions-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin-bottom: var(--space-4);
+        position: relative;
+      }
+
+      .solutions-title::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-light) 100%);
+        border-radius: 2px;
+      }
+
+      .solutions-subtitle {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: var(--font-weight-medium);
+      }
+
+      .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-8);
+        margin-top: var(--space-12);
+      }
+
+      .solution-card {
+        background: var(--surface-elevated);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-light);
+        position: relative;
+      }
+
+      .solution-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-color: var(--accent-color);
+      }
+
+      .solution-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-6);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+
+      .solution-card:hover .solution-icon {
+        transform: scale(1.02);
+      }
+
+      .solution-icon i {
+        font-size: 2rem;
+        color: white;
+      }
+
+      .solution-card-title {
+        font-size: 1.375rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin-bottom: var(--space-4);
+        transition: color 0.2s ease;
+      }
+
+      .solution-card:hover .solution-card-title {
+        color: var(--accent-color);
+      }
+
+      .solution-card-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 1rem;
+        transition: color 0.2s ease;
+      }
+
+      .solution-card:hover .solution-card-description {
+        color: var(--text-secondary);
+      }
+
+      /* Responsive design for solutions section */
+      @media (max-width: 768px) {
+        .solutions-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+        }
+
+        .solution-card {
+          padding: var(--space-4);
+        }
+
+        .solution-icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .solution-icon i {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* Tighter CTA on this page with a little space before footer */
+      .cta-section.section { padding: var(--space-12) 0; margin-bottom: var(--space-8); }
+
+      /* Ensure CTA section has proper spacing */
+      .cta-section.section {
+        padding-top: var(--space-12);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar" id="smart-navbar">
+      <div class="container navbar__content">
+        <a href="../index.html" class="logo">
+          <img src="../assets/images/logo.png" alt="Indian Agency Logo" />
+          <!-- <span>Indian Agency</span> -->
+        </a>
+
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="../index.html" class="nav-link">Home</a>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a href="services.html" class="nav-link">Services</a>
+            <div class="dropdown-content">
+              <a href="services.html"><i class="fas fa-truck-loading"></i> Drayage</a>
+              <a href="services.html"><i class="fas fa-truck"></i> Truckload</a>
+              <a href="services.html"><i class="fas fa-thermometer-half"></i> Reefer</a>
+              <a href="services.html"><i class="fas fa-warehouse"></i> Warehousing & Transloading</a>
+              <a href="services.html"><i class="fas fa-shipping-fast"></i> Intermodal</a>
+              <a href="services.html"><i class="fas fa-boxes"></i> LTL</a>
+              <a href="services.html"><i class="fas fa-plane"></i> Air & Expedited</a>
+              <a href="services.html"><i class="fas fa-truck-moving"></i> Flatbed</a>
+              <a href="services.html"><i class="fas fa-globe"></i> Cross Border</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="solutions.html" class="nav-link">Solutions</a>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a href="industries.html" class="nav-link">Industries</a>
+            <div class="dropdown-content">
+              <a href="industries.html"><i class="fas fa-car"></i> Automotive</a>
+              <a href="industries.html"><i class="fas fa-solar-panel"></i> Solar</a>
+              <a href="industries.html"><i class="fas fa-industry"></i> Manufacturing</a>
+              <a href="industries.html"><i class="fas fa-hammer"></i> Building Materials</a>
+              <a href="industries.html"><i class="fas fa-leaf"></i> Renewable Energy</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="About.html" class="nav-link">About Us</a>
+          </div>
+
+          <div class="nav-item">
+            <a href="../index.html#contact" class="nav-link">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <button class="mobile-nav-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="side-nav">
+      <div class="side-nav-links">
+        <a href="../index.html" class="side-nav-item">
+          <span>Home</span>
+          <i class="fas fa-home"></i>
+        </a>
+
+        <a href="services.html" class="side-nav-item">
+          <span>Services</span>
+          <i class="fas fa-truck-loading"></i>
+        </a>
+
+        <a href="solutions.html" class="side-nav-item">
+          <span>Solutions</span>
+          <i class="fa-solid fa-lightbulb"></i>
+        </a>
+
+        <a href="industries.html" class="side-nav-item">
+          <span>Industries</span>
+          <i class="fas fa-industry"></i>
+        </a>
+
+        <div href="About.html" class="side-nav-item">
+          <span>About Us</span>
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <div href="../index.html#contact" class="side-nav-item">
+          <span>Contact</span>
+          <i class="fas fa-envelope"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Corousel section-->
+    <section id="home" class="hero">
+      <div class="hero-carousel">
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/ff-land.jpg')"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/ff-air.jpg')"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/ff-ocean.jpg')"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/Solution-2.jpg')"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/trans-4.jpg')"
+        ></div>
+        <div
+          class="carousel-slide"
+          style="background-image: url('../assets/images/ff-NVOCC.jpg')"
+        ></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="solutions-hero-title">Solutions</h1>
+        <p class="solutions-intro">Transforming global logistics with cutting-edge solutions and unmatched expertise in shipping and supply chain management</p>
+        <a href="../index.html#contact" class="btn btn--primary btn--rounded">Get a Quick Quote</a>
+      </div>
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- Solutions Grid -->
+    <section class="section solutions-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Comprehensive Logistics Solutions</h2>
+          <!-- <p class="section-subtitle">Transforming global logistics with cutting-edge solutions and unmatched expertise in shipping and supply chain management</p> -->
+        </div>
+
+        <div class="solutions-grid">
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3 class="solution-card-title">Integrated Project Management</h3>
+            <p class="solution-card-description">Customised solutions to handle cargo of any size, volume, or weight with global reach and 24/7 support.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-door-open"></i>
+            </div>
+            <h3 class="solution-card-title">Door to Door Solutions</h3>
+            <p class="solution-card-description">End-to-end delivery covering multiple transport options with customs clearance and last mile delivery.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="solution-card-title">4PL Solutions</h3>
+            <p class="solution-card-description">Supply chain optimization through resource management, technology integration, and process automation.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <h3 class="solution-card-title">Value Added Services</h3>
+            <p class="solution-card-description">Industry-specific expertise with FSSAI assistance, SVB support, duty drawback, and AEO certification.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="solution-card-title">DG Transport Solutions</h3>
+            <p class="solution-card-description">Safe handling of dangerous cargo with compliance management, expert handling, and risk assessment.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-satellite-dish"></i>
+            </div>
+            <h3 class="solution-card-title">Technology for SCM</h3>
+            <p class="solution-card-description">Real-time tracking, process automation, data analytics, and cloud integration for enhanced efficiency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA before footer (links to home contact) -->
+    <section class="cta-section section">
+      <div class="cta-dots"></div>
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to optimize your logistics?</h2>
+          <p class="cta-subtitle">Get a comprehensive solutions assessment from our team today.</p>
+          <a href="../index.html#contact" class="btn btn--large" style="background: white; color: var(--accent-color)">Let’s Talk</a>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer Section-->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>About Us</h3>
+          <p>
+            Babaji Shivram Logistics is your trusted transportation partner with
+            over 40 years of experience. We provide comprehensive logistics
+            solutions with offices worldwide.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="../index.html#contact">Get Quote</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html">Drayage</a></li>
+            <li><a href="services.html">Truckload</a></li>
+            <li><a href="services.html">Reefer</a></li>
+            <li><a href="services.html">Intermodal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Industries</h3>
+          <ul>
+            <li><a href="industries.html">Automotive</a></li>
+            <li><a href="industries.html">Solar</a></li>
+            <li><a href="industries.html">Manufacturing</a></li>
+            <li><a href="industries.html">Building Materials</a></li>
+            <li><a href="industries.html">Renewable Energy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Babaji Shivram Logistics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      });
+
+
+    </script>
+
+    <script>
+      // Active page highlighting functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+
+          // Check if current path matches the link
+          if (href && currentPath.includes(href)) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+              item.classList.remove('active');
+            });
+
+            // Add active class to parent nav-item
+            link.closest('.nav-item').classList.add('active');
+          }
+        });
+
+        // Special handling for home page
+        if (currentPath === '/' || currentPath.endsWith('index.html') || currentPath.endsWith('/')) {
+          const homeLink = document.querySelector('a[href="../index.html"]');
+          if (homeLink) {
+            homeLink.closest('.nav-item').classList.add('active');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

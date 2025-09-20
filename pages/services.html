@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Babaji Shivram Logistics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="../assets/css/nav.css" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <style>
+      /* Page-specific light styles to compose with the shared design system */
+      .services-hero-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; }
+      .services-intro { color: rgba(255,255,255,0.9); max-width: 720px; margin: 10px auto 0; }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3x3 grid for desktop */
+        gap: var(--space-6);
+        margin-top: var(--space-10);
+      }
+
+      /* Responsive design for services grid */
+      @media (max-width: 1200px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+          gap: var(--space-4);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .services-grid {
+          grid-template-columns: 1fr; /* 1 column on mobile */
+          gap: var(--space-4);
+          margin-top: var(--space-8);
+        }
+      }
+
+      /* Override global CSS nth-child positioning for 3x3 grid */
+      .service-card:nth-child(n) {
+        grid-column: auto !important;
+        grid-row: auto !important;
+      }
+      .service-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--background-secondary); border: 1px solid var(--border-light); color: var(--text-secondary); border-radius: var(--radius-full); padding: 6px 12px; font-size: 0.85rem; }
+      .service-card {
+        background: white;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 280px;
+        justify-content: space-between;
+      }
+
+      .service-card:hover {
+        background: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--accent-color);
+      }
+
+      .service-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+      }
+
+      .service-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--background-secondary);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+        flex-shrink: 0;
+      }
+
+      .service-card:hover .service-icon {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .service-icon i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        transition: all 0.4s ease;
+      }
+
+      .service-card:hover .service-icon i {
+        color: white;
+      }
+
+      .service-title {
+        font-size: 1.25rem;
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        transition: all 0.4s ease;
+      }
+
+      .service-card:hover .service-title {
+        color: white;
+      }
+
+      .service-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: var(--space-4);
+        transition: all 0.4s ease;
+        flex-grow: 1;
+      }
+
+      .service-card:hover .service-description {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .service-card .service-meta {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: auto;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      .feature-slab {
+        display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-12); align-items: center;
+        background: var(--background-secondary); border: 1px solid var(--border-light); border-radius: var(--radius-2xl);
+        padding: var(--space-10);
+      }
+      .feature-slab h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: var(--space-4); }
+      .feature-list { display: grid; gap: 10px; margin-top: var(--space-4); }
+      .feature-list li { list-style: none; display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+      .slab-visual { border-radius: var(--radius-xl); overflow: hidden; min-height: 260px; background: url('../assets/images/trans-2.jpg') center/cover no-repeat; }
+
+      /* Enhanced Expectations Section */
+      .expectations-section {
+        background: var(--background-primary);
+        position: relative;
+      }
+
+      .expectations-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .expectations-header {
+        text-align: center;
+        margin-bottom: var(--space-12);
+      }
+
+      .expectations-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin-bottom: var(--space-4);
+        position: relative;
+      }
+
+      .expectations-title::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-light) 100%);
+        border-radius: 2px;
+      }
+
+      .expectations-subtitle {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: var(--font-weight-medium);
+      }
+
+      .expectations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-6);
+        margin-top: var(--space-8);
+      }
+
+      .expectation-card {
+        background: var(--surface-elevated);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-light);
+        position: relative;
+      }
+
+      .expectation-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border-color: var(--accent-color);
+      }
+
+      .expectation-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto var(--space-6);
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .expectation-card:hover .expectation-icon {
+        transform: scale(1.05);
+      }
+
+      .expectation-icon i {
+        font-size: 2rem;
+        color: white;
+      }
+
+      .expectation-card-title {
+        font-size: 1.375rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin-bottom: var(--space-4);
+        transition: color 0.4s ease;
+      }
+
+      .expectation-card:hover .expectation-card-title {
+        color: var(--accent-color);
+      }
+
+      .expectation-card-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 1rem;
+        transition: color 0.4s ease;
+      }
+
+      .expectation-card:hover .expectation-card-description {
+        color: var(--text-primary);
+      }
+
+      /* Responsive design for expectations section */
+      @media (max-width: 768px) {
+        .expectations-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-4);
+        }
+
+        .expectation-card {
+          padding: var(--space-4);
+        }
+
+        .expectation-icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .expectation-icon i {
+          font-size: 1.5rem;
+        }
+
+        /* Adjust section padding for mobile */
+        .section {
+          padding: var(--space-8) 0;
+        }
+
+        .section:nth-of-type(1) {
+          padding-bottom: var(--space-4);
+        }
+
+        .expectations-section {
+          padding-top: var(--space-4);
+        }
+      }
+
+      /* Tighter CTA on this page with a little space before footer */
+      .cta-section.section { padding: var(--space-12) 0; margin-bottom: var(--space-8); }
+
+
+      /* Fix excessive spacing between sections - reduce default padding */
+      .section {
+        padding: var(--space-12) 0;
+      }
+
+      /* Remove bottom padding from services grid section (adjacent to expectations) */
+      .section:nth-of-type(1) {
+        padding-bottom: var(--space-6);
+      }
+
+      /* Reduce top padding for expectations section */
+      .expectations-section {
+        padding-top: var(--space-6);
+      }
+
+      /* Ensure CTA section has proper spacing */
+      .cta-section.section {
+        padding-top: var(--space-12);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-overlay"></div>
+
+    <nav class="navbar" id="smart-navbar">
+      <div class="container navbar__content">
+        <a href="../index.html" class="logo">
+          <img src="../assets/images/logo.png" alt="Indian Agency Logo" />
+        </a>
+
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="../index.html">Home</a>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a href="services.html" class="nav-link">Services</a>
+            <div class="dropdown-content">
+              <a href="services.html"><i class="fas fa-truck-loading"></i> Drayage</a>
+              <a href="services.html"><i class="fas fa-truck"></i> Truckload</a>
+              <a href="services.html"><i class="fas fa-thermometer-half"></i> Reefer</a>
+              <a href="services.html"><i class="fas fa-warehouse"></i> Warehousing & Transloading</a>
+              <a href="services.html"><i class="fas fa-shipping-fast"></i> Intermodal</a>
+              <a href="services.html"><i class="fas fa-boxes"></i> LTL</a>
+              <a href="services.html"><i class="fas fa-plane"></i> Air & Expedited</a>
+              <a href="services.html"><i class="fas fa-truck-moving"></i> Flatbed</a>
+              <a href="services.html"><i class="fas fa-globe"></i> Cross Border</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="solutions.html" class="nav-link">Solutions</a>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a href="industries.html" class="nav-link">Industries</a>
+            <div class="dropdown-content">
+              <a href="industries.html"><i class="fas fa-car"></i> Automotive</a>
+              <a href="industries.html"><i class="fas fa-solar-panel"></i> Solar</a>
+              <a href="industries.html"><i class="fas fa-industry"></i> Manufacturing</a>
+              <a href="industries.html"><i class="fas fa-hammer"></i> Building Materials</a>
+              <a href="industries.html"><i class="fas fa-leaf"></i> Renewable Energy</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="About.html" class="nav-link">About Us</a>
+          </div>
+
+          <div class="nav-item">
+            <a href="../index.html#contact" class="nav-link">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <button class="mobile-nav-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="side-nav">
+      <div class="side-nav-links">
+        <a href="../index.html" class="side-nav-item">
+          <span>Home</span>
+          <i class="fas fa-home"></i>
+        </a>
+
+        <a href="services.html" class="side-nav-item">
+          <span>Services</span>
+          <i class="fas fa-truck-loading"></i>
+        </a>
+
+        <a href="solutions.html" class="side-nav-item">
+          <span>Solutions</span>
+          <i class="fa-solid fa-lightbulb"></i>
+        </a>
+
+        <a href="industries.html" class="side-nav-item">
+          <span>Industries</span>
+          <i class="fas fa-industry"></i>
+        </a>
+
+        <a href="About.html" class="side-nav-item">
+          <span>About Us</span>
+          <i class="fas fa-info-circle"></i>
+        </a>
+
+        <a href="../index.html#contact" class="side-nav-item">
+          <span>Contact</span>
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Carousel (kept consistent with homepage) -->
+    <section id="home" class="hero">
+      <div class="hero-carousel">
+        <div class="carousel-slide" style="background-image: url('../assets/images/ff-land.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('../assets/images/ff-air.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('../assets/images/ff-ocean.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('../assets/images/Solution-2.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('../assets/images/trans-4.jpg')"></div>
+        <div class="carousel-slide" style="background-image: url('../assets/images/ff-NVOCC.jpg')"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="services-hero-title">Services / Modes</h1>
+        <p class="services-intro">Modern, reliable transportation options tailored to your freight, timelines, and budget.</p>
+        <a href="../index.html#contact" class="btn btn--primary btn--rounded">Get a Quick Quote</a>
+      </div>
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">We move freight the way you need</h2>
+          <!-- <p class="section-subtitle">Nine core service modes, explained briefly with a minimalist, modern layout.</p> -->
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-truck-loading"></i></div>
+              <h3 class="service-title">Drayage</h3>
+            </div>
+            <p class="service-description">Port and rail ramp pickups and returns with live, drop, and pier dray options.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-clock"></i>Same‑day</span><span class="service-chip"><i class="fas fa-box"></i>FCL/LCL</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-truck"></i></div>
+              <h3 class="service-title">Truckload</h3>
+            </div>
+            <p class="service-description">Reliable FTL capacity across dry van and power‑only with network coverage.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-route"></i>Nationwide</span><span class="service-chip"><i class="fas fa-clock"></i>Expedited</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-thermometer-half"></i></div>
+              <h3 class="service-title">Reefer</h3>
+            </div>
+            <p class="service-description">Temperature‑controlled transport for perishables and pharma with continuous monitoring.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-snowflake"></i>-20°C to +20°C</span><span class="service-chip"><i class="fas fa-check"></i>GMP ready</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-warehouse"></i></div>
+              <h3 class="service-title">Warehousing & Transloading</h3>
+            </div>
+            <p class="service-description">Short‑term storage, cross‑dock, and palletization with seamless mode transfers.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-arrows-left-right"></i>Cross‑dock</span><span class="service-chip"><i class="fas fa-pallet"></i>Palletize</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
+              <h3 class="service-title">Intermodal</h3>
+            </div>
+            <p class="service-description">Rail + road solutions for cost efficiency and lower emissions on long hauls.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-leaf"></i>Lower CO₂</span><span class="service-chip"><i class="fas fa-dollar-sign"></i>Cost‑optimized</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-boxes"></i></div>
+              <h3 class="service-title">LTL (Less Than Truckload)</h3>
+            </div>
+            <p class="service-description">Economical options for smaller freight with reliable transit and tracking.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-weight-hanging"></i>1–10 pallets</span><span class="service-chip"><i class="fas fa-barcode"></i>Tracking</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-plane"></i></div>
+              <h3 class="service-title">Air & Expedited</h3>
+            </div>
+            <p class="service-description">Next‑flight‑out, hot‑shot, and dedicated sprinter/cargo van for urgent loads.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-plane-departure"></i>NFO</span><span class="service-chip"><i class="fas fa-bolt"></i>Time‑critical</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-truck-moving"></i></div>
+              <h3 class="service-title">Flatbed</h3>
+            </div>
+            <p class="service-description">Open‑deck capacity for machinery, steel, lumber, and over‑dimensional freight.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-ruler-combined"></i>OD/OW</span><span class="service-chip"><i class="fas fa-chain"></i>Straps/Tarps</span></div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <div class="service-icon"><i class="fas fa-globe"></i></div>
+              <h3 class="service-title">Cross Border</h3>
+            </div>
+            <p class="service-description">Seamless U.S.–Mexico–Canada moves with bilingual support and customs coordination.</p>
+            <div class="service-meta"><span class="service-chip"><i class="fas fa-passport"></i>Docs assist</span><span class="service-chip"><i class="fas fa-arrows-rotate"></i>Transload</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced "What you can expect" section -->
+    <section class="section expectations-section">
+      <div class="container">
+        <div class="expectations-content">
+          <div class="expectations-header">
+            <h2 class="expectations-title">What you can expect</h2>
+            <p class="expectations-subtitle">Visibility, on‑time performance, and proactive communication powered by experienced ops.</p>
+          </div>
+
+          <div class="expectations-grid">
+            <div class="expectation-card">
+              <div class="expectation-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h3 class="expectation-card-title">Single Point of Contact</h3>
+              <p class="expectation-card-description">Dedicated support team available 24/7 for all your logistics needs and inquiries.</p>
+            </div>
+
+            <div class="expectation-card">
+              <div class="expectation-icon">
+                <i class="fas fa-satellite-dish"></i>
+              </div>
+              <h3 class="expectation-card-title">Real-Time Visibility</h3>
+              <p class="expectation-card-description">Track your shipments with live updates, milestone notifications, and proactive alerts.</p>
+            </div>
+
+            <div class="expectation-card">
+              <div class="expectation-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="expectation-card-title">Compliance & Safety</h3>
+              <p class="expectation-card-description">Industry-leading safety standards with full carrier compliance and risk management.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA before footer (links to home contact) -->
+    <section class="cta-section section">
+      <div class="cta-dots"></div>
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to move your freight?</h2>
+          <p class="cta-subtitle">Get a quick quote and timelines from our team today.</p>
+          <a href="../index.html#contact" class="btn btn--large" style="background: white; color: var(--accent-color)">Let’s Talk</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (same structure/theme as homepage, paths adjusted) -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>About Us</h3>
+          <p>
+            Babaji Shivram Logistics is your trusted transportation partner with
+            over 40 years of experience. We provide comprehensive logistics
+            solutions with offices worldwide.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="carriers.html">Carriers</a></li>
+            <li><a href="../index.html#contact">Ship With Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html">Drayage</a></li>
+            <li><a href="services.html">Truckload</a></li>
+            <li><a href="services.html">Reefer</a></li>
+            <li><a href="services.html">Intermodal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Industries</h3>
+          <ul>
+            <li><a href="industries.html">Automotive</a></li>
+            <li><a href="industries.html">Solar</a></li>
+            <li><a href="industries.html">Manufacturing</a></li>
+            <li><a href="industries.html">Building Materials</a></li>
+            <li><a href="industries.html">Renewable Energy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Babaji Shivram Logistics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js" defer></script>
+
+    <script>
+      // Active page highlighting functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+
+          // Check if current path matches the link
+          if (href && currentPath.includes(href)) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+              item.classList.remove('active');
+            });
+
+            // Add active class to parent nav-item
+            link.closest('.nav-item').classList.add('active');
+          }
+        });
+
+        // Special handling for home page
+        if (currentPath === '/' || currentPath.endsWith('index.html') || currentPath.endsWith('/')) {
+          const homeLink = document.querySelector('a[href="../index.html"]');
+          if (homeLink) {
+            homeLink.closest('.nav-item').classList.add('active');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+
+

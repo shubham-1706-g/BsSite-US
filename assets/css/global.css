@@ -969,17 +969,36 @@ input[type="text"], input[type="email"], textarea {
   width: 100%;
   padding: var(--space-4) var(--space-5);
   border: 2px solid var(--border-light);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg) !important;
   font-size: 1rem;
   transition: all 0.2s ease;
   background: var(--background-primary);
   color: var(--text-primary);
+  -webkit-border-radius: var(--radius-lg) !important;
+  -moz-border-radius: var(--radius-lg) !important;
+  -ms-border-radius: var(--radius-lg) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
 }
 
 .form-input:focus {
   outline: none;
   border-color: var(--accent-color);
+  border-radius: var(--radius-lg) !important;
   box-shadow: 0 0 0 3px rgba(235, 110, 56, 0.1);
+  -webkit-border-radius: var(--radius-lg) !important;
+  -moz-border-radius: var(--radius-lg) !important;
+  -ms-border-radius: var(--radius-lg) !important;
+}
+
+.form-input:active,
+.form-input:hover {
+  border-radius: var(--radius-lg) !important;
+  -webkit-border-radius: var(--radius-lg) !important;
+  -moz-border-radius: var(--radius-lg) !important;
+  -ms-border-radius: var(--radius-lg) !important;
 }
 
 .form-input::placeholder {
@@ -989,6 +1008,10 @@ input[type="text"], input[type="email"], textarea {
 .form-textarea {
   min-height: 120px;
   resize: vertical;
+  border-radius: var(--radius-lg) !important;
+  -webkit-border-radius: var(--radius-lg) !important;
+  -moz-border-radius: var(--radius-lg) !important;
+  -ms-border-radius: var(--radius-lg) !important;
 }
 
 /* ========================================
